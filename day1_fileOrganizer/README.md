@@ -1,6 +1,14 @@
- ## Day 1 - 2024-05-20
+ ## Day 1 - 14-05-2025
+ ## PROFESSIONAL DOWNLOADS ORGANIZER
 ### Goals:
-- [ ] Complete inventory_formatter.py
-- [ ] Solve 2 micro-exercises
+- [ ] Complete file_organizer.py
+- [ ] Understanding Libraries
+### Main Functionality
+- Multi-platform path handling
+- Extension-based categorization
+- Duplicate file resolution
+- Comprehensive logging
+- Dry-run mode for testing
+- Performance metrics
 ### Notes:
-- Struggled with list comprehensions (solved with @help).
+- Struggled with understanding of code.
