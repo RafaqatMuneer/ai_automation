@@ -1,1 +1,40 @@
 
+2025-05-15 21:53:15,074 - INFO - Starting orgnization of C:\Users\Malik\Downloads
+2025-05-15 21:53:15,074 - INFO - Operation complete. Moved: 0, Skipped: 0, Errors: 0
+2025-05-15 21:54:37,575 - INFO - Starting orgnization of C:\Users\Malik\Downloads
+2025-05-15 21:54:37,575 - INFO - Moved 3720328266534 (1).pdf to Documents
+2025-05-15 21:54:37,592 - INFO - Moved 3720328266534.pdf to Documents
+2025-05-15 21:54:37,593 - INFO - Moved archive.zip to Archives
+2025-05-15 21:54:37,599 - ERROR - Failed Back.jpeg : [Errno 2] No such file or directory: 'C:\\Users\\Malik\\Downloads\\Others\\Back.jpeg'
+2025-05-15 21:54:37,599 - ERROR - Failed desktop.ini : [Errno 2] No such file or directory: 'C:\\Users\\Malik\\Downloads\\Others\\desktop.ini'
+2025-05-15 21:54:37,604 - INFO - Moved facebook-61575556007252-03_05_2025-syub2MDE.zip to Archives
+2025-05-15 21:54:37,605 - ERROR - Failed FoxitPDFReader20244_enu_Setup_Prom.exe : [Errno 2] No such file or directory: 'C:\\Users\\Malik\\Downloads\\Others\\FoxitPDFReader20244_enu_Setup_Prom.exe'
+2025-05-15 21:54:37,617 - ERROR - Failed Front.jpeg : [Errno 2] No such file or directory: 'C:\\Users\\Malik\\Downloads\\Others\\Front.jpeg'
+2025-05-15 21:54:37,617 - ERROR - Failed Git-2.49.0-64-bit.exe : [Errno 2] No such file or directory: 'C:\\Users\\Malik\\Downloads\\Others\\Git-2.49.0-64-bit.exe'
+2025-05-15 21:54:37,617 - INFO - Moved Sample.Data.v3.zip to Archives
+2025-05-15 21:54:37,617 - ERROR - Failed sp91903.exe : [Errno 2] No such file or directory: 'C:\\Users\\Malik\\Downloads\\Others\\sp91903.exe'
+2025-05-15 21:54:37,631 - ERROR - Failed WhatsApp Image 2025-04-07 at 9.33.54 AM.jpeg : [Errno 2] No such file or directory: 'C:\\Users\\Malik\\Downloads\\Others\\WhatsApp Image 2025-04-07 at 9.33.54 AM.jpeg'
+2025-05-15 21:54:37,631 - INFO - Operation complete. Moved: 5, Skipped: 5, Errors: 7
+2025-05-15 21:55:51,231 - INFO - Starting orgnization of C:\Users\Malik\Downloads
+2025-05-15 21:55:51,231 - INFO - Moved Back.jpeg to Images
+2025-05-15 21:55:51,231 - ERROR - Failed desktop.ini : [Errno 2] No such file or directory: 'C:\\Users\\Malik\\Downloads\\Others\\desktop.ini'
+2025-05-15 21:55:51,231 - ERROR - Failed FoxitPDFReader20244_enu_Setup_Prom.exe : [Errno 2] No such file or directory: 'C:\\Users\\Malik\\Downloads\\Others\\FoxitPDFReader20244_enu_Setup_Prom.exe'
+2025-05-15 21:55:51,231 - INFO - Moved Front.jpeg to Images
+2025-05-15 21:55:51,231 - ERROR - Failed Git-2.49.0-64-bit.exe : [Errno 2] No such file or directory: 'C:\\Users\\Malik\\Downloads\\Others\\Git-2.49.0-64-bit.exe'
+2025-05-15 21:55:51,240 - ERROR - Failed sp91903.exe : [Errno 2] No such file or directory: 'C:\\Users\\Malik\\Downloads\\Others\\sp91903.exe'
+2025-05-15 21:55:51,243 - INFO - Moved WhatsApp Image 2025-04-07 at 9.33.54 AM.jpeg to Images
+2025-05-15 21:55:51,243 - INFO - Operation complete. Moved: 3, Skipped: 5, Errors: 4
+2025-05-15 21:57:04,916 - INFO - Starting orgnization of C:\Users\Malik\Downloads
+2025-05-15 21:57:04,916 - ERROR - Failed desktop.ini : [Errno 2] No such file or directory: 'C:\\Users\\Malik\\Downloads\\Others\\desktop.ini'
+2025-05-15 21:57:04,916 - INFO - Moved FoxitPDFReader20244_enu_Setup_Prom.exe to Softwares
+2025-05-15 21:57:04,916 - INFO - Moved Git-2.49.0-64-bit.exe to Softwares
+2025-05-15 21:57:04,931 - INFO - Moved sp91903.exe to Softwares
+2025-05-15 21:57:04,931 - INFO - Operation complete. Moved: 3, Skipped: 6, Errors: 1
+2025-05-15 22:02:02,848 - INFO - Starting orgnization of C:\Users\Malik\Downloads
+2025-05-15 22:02:02,851 - ERROR - Failed desktop.ini : [Errno 2] No such file or directory: 'C:\\Users\\Malik\\Downloads\\Others\\desktop.ini'
+2025-05-15 22:02:02,852 - INFO - Operation complete. Moved: 0, Skipped: 6, Errors: 1
+2025-05-15 22:02:16,488 - INFO - Starting orgnization of C:\Users\Malik\Downloads
+2025-05-15 22:02:16,488 - ERROR - Failed desktop.ini : [Errno 2] No such file or directory: 'C:\\Users\\Malik\\Downloads\\Others\\desktop.ini'
+2025-05-15 22:02:16,488 - INFO - Operation complete. Moved: 0, Skipped: 6, Errors: 1
+2025-05-15 22:04:07,571 - INFO - Starting orgnization of C:\Users\Malik\Downloads
+2025-05-15 22:04:07,573 - INFO - Operation complete. Moved: 0, Skipped: 7, Errors: 0
