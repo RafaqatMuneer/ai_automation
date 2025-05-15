@@ -40,6 +40,11 @@ class DownlaodsOrganizer:
         logger.addHandler(file_handler)
         logger.addHandler(console_handler)
         return logger
+    # script to resolve duplicated names
+    def _resolve_duplicate(self, target : Path) -> Path:
+        "Handling filename conflicts"
+        timestamp = datetime.now().strftime("%d%m%Y_%H%M%S")
+        return target.with_stem(f"{target.stem}_Duplicated_{timestamp}")
 
     
 if __name__ == "__main__":
