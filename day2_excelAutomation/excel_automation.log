@@ -1,12 +1,4 @@
  
-2025-05-17 20:30:45,851 - INFO - Starting orgnization of 
-2025-05-17 23:12:31,581 - ERROR - Report failed: name 'dataframe_to_rows' is not defined
-2025-05-17 23:15:37,408 - ERROR - Report failed: [Errno 13] Permission denied: 'Q2_Sales_Report.xlsx'
-2025-05-17 23:16:22,608 - ERROR - Report failed: ChartBase.add_data() missing 1 required positional argument: 'data'
-2025-05-17 23:24:09,618 - ERROR - Report failed: ChartBase.add_data() missing 1 required positional argument: 'data'
-2025-05-18 17:30:25,052 - ERROR - Report failed: ChartBase.add_data() missing 1 required positional argument: 'data'
-2025-05-18 17:34:23,116 - ERROR - Report failed: ChartBase.add_data() missing 1 required positional argument: 'data'
-2025-05-18 17:34:59,506 - ERROR - Report failed: ChartBase.add_data() missing 1 required positional argument: 'data'
 2025-05-18 17:35:40,898 - ERROR - Report failed: ChartBase.add_data() missing 1 required positional argument: 'data'
 2025-05-18 17:38:06,823 - INFO - Report generated: Q2_Sales_Report.xlsx
 2025-05-18 17:38:06,823 - INFO - Charts generated: 1

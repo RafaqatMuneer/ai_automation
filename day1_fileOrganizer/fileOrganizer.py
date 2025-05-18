@@ -86,7 +86,7 @@ class DownlaodsOrganizer:
                         try:
                             shutil.move(str(item),str(dest_path))
                             self.stats["moved"] += 1
-                            self.logger.info(f"Moved {item.name} to {dest_category}")
+                            self.logger.info(f"Moved: {item.name} -> {dest_category}")
 
                         except Exception as e:
                             self.stats["errors"] += 1
