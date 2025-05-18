@@ -65,33 +65,10 @@ class ExcelReportGenerator:
         chart.set_categories(categories)
         ws.add_chart(chart, "E2")
         self.stats["charts"] += 1
-    # def _add_summary_sheet(self, workbook: Workbook, data: pd.DataFrame) -> None:
-    #     """Formatted summary with charts"""
-    #     ws = workbook.create_sheet("Summary")
-        
-    #     # Header
-    #     ws["A1"] = "Quarterly Performance"
-    #     ws["A1"].font = Font(bold=True, size=14)
-        
-    #     # Data
-    #     for row in data.itertuples():
-    #         ws.append(row[1:])  # Skip index
-            
-    #     # Chart
-    #     chart = BarChart()
-    #     chart.title = "Sales by Quarter"
-    #     values = Reference(ws, min_col=2, max_col=3, min_row=1, max_row=3)
-    #     chart.add_data(values, titles_from_data=True)
-    #     ws.add_chart(chart, "E2")
-    #     self.stats["charts"] += 1
 if __name__ == "__main__":
     generator = ExcelReportGenerator()
-     # 1. Get business data
-    # sales_data = generator.fetch_data("erp_system")
-    
-    # 2. Generate investor-ready report
-    generator.create_report(Path("Q2_Sales_Report.xlsx"))
-    
-    # 3. Log performance metrics
+    # Generate investor-ready report
+    generator.create_report(Path("Q2_Sales_Report.xlsx"))   
+    # Log performance metrics
     generator.logger.info(f"Charts generated: {generator.stats['charts']}")
 
