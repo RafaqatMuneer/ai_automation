@@ -1,0 +1,30 @@
+ 
+2025-05-17 20:30:45,851 - INFO - Starting orgnization of 
+2025-05-17 23:12:31,581 - ERROR - Report failed: name 'dataframe_to_rows' is not defined
+2025-05-17 23:15:37,408 - ERROR - Report failed: [Errno 13] Permission denied: 'Q2_Sales_Report.xlsx'
+2025-05-17 23:16:22,608 - ERROR - Report failed: ChartBase.add_data() missing 1 required positional argument: 'data'
+2025-05-17 23:24:09,618 - ERROR - Report failed: ChartBase.add_data() missing 1 required positional argument: 'data'
+2025-05-18 17:30:25,052 - ERROR - Report failed: ChartBase.add_data() missing 1 required positional argument: 'data'
+2025-05-18 17:34:23,116 - ERROR - Report failed: ChartBase.add_data() missing 1 required positional argument: 'data'
+2025-05-18 17:34:59,506 - ERROR - Report failed: ChartBase.add_data() missing 1 required positional argument: 'data'
+2025-05-18 17:35:40,898 - ERROR - Report failed: ChartBase.add_data() missing 1 required positional argument: 'data'
+2025-05-18 17:38:06,823 - INFO - Report generated: Q2_Sales_Report.xlsx
+2025-05-18 17:38:06,823 - INFO - Charts generated: 1
+2025-05-18 17:42:50,449 - INFO - Report generated: Q2_Sales_Report.xlsx
+2025-05-18 17:42:50,449 - INFO - Charts generated: 1
+2025-05-18 17:43:31,896 - INFO - Report generated: Q2_Sales_Report.xlsx
+2025-05-18 17:43:31,896 - INFO - Charts generated: 1
+2025-05-18 17:46:19,395 - ERROR - Report failed: [Errno 13] Permission denied: 'Q2_Sales_Report.xlsx'
+2025-05-18 17:46:45,746 - ERROR - Report failed: [Errno 13] Permission denied: 'Q2_Sales_Report.xlsx'
+2025-05-18 17:47:09,465 - INFO - Report generated: Q2_Sales_Report.xlsx
+2025-05-18 17:47:09,465 - INFO - Charts generated: 1
+2025-05-18 17:51:19,445 - INFO - Report generated: Q2_Sales_Report.xlsx
+2025-05-18 17:51:19,445 - INFO - Charts generated: 1
+2025-05-18 17:52:01,364 - INFO - Report generated: Q2_Sales_Report.xlsx
+2025-05-18 17:52:01,364 - INFO - Charts generated: 1
+2025-05-18 17:55:11,358 - INFO - Report generated: Q2_Sales_Report.xlsx
+2025-05-18 17:55:11,358 - INFO - Charts generated: 1
+2025-05-18 17:55:56,377 - INFO - Report generated: Q2_Sales_Report.xlsx
+2025-05-18 17:55:56,377 - INFO - Charts generated: 1
+2025-05-18 17:59:33,490 - INFO - Report generated: Q2_Sales_Report.xlsx
+2025-05-18 17:59:33,490 - INFO - Charts generated: 1
