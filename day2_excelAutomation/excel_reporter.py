@@ -6,6 +6,7 @@ import logging
 from typing import Dict, List
 from openpyxl.utils.dataframe import dataframe_to_rows
 from pathlib import Path
+import requests
 
 class ExcelReportGenerator:
     def __init__(self):
@@ -22,21 +23,33 @@ class ExcelReportGenerator:
         return logger
     
     def fetch_data(self) -> pd.DataFrame:
-        # data = {
+        # return pd.DataFrame({
         #     "Product": ["Widget A", "Widget B", "Widget C"],
         #     "Q1 Sales": [45000, 56000, 89000],
         #     "Q2 Sales": [51000, 63000, 92000]
-        # }
-        return pd.DataFrame({
-            "Product": ["Widget A", "Widget B"],
-            "Q1 Sales": [45000, 56000],
-            "Q2 Sales": [51000, 63000]
-        })
+        # })
+        """Fetch data from fakestore API"""
+        url = "https://fakestoreapi.com/products"
+        response = requests.get(url)
+        if response.status_code != 200:
+            logging.error(f"API call failed with status {response.status_code}")
+        return pd.DataFrame(response.json())
+    
+    def _flatten_dict_columns(self) -> pd.DataFrame:
+        df = self.fetch_data()
+        for col in df.columns:
+            # Check if the first row is a dictionary
+            if isinstance(df[col].iloc[0], dict):  
+                # Expand the dictionary into separate columns
+                dict_df = pd.json_normalize(df[col])
+                dict_df.columns = [f"{col}_{subcol}" for subcol in dict_df.columns]  # Rename columns
+                df = df.drop(columns=[col]).join(dict_df)  # Drop the original column and join expanded columns
+        return df
+
     def create_report(self, output_path: Path) -> None:
         "Generate Excel report"
         try:
-            data = self.fetch_data()
-            # print(data)
+            data = self._flatten_dict_columns()
             with pd.ExcelWriter(output_path, engine="openpyxl") as writer:
                 data.to_excel(writer,sheet_name="Sales Data", index=False)
                 self.stats["sheets"] += 1
@@ -54,15 +67,18 @@ class ExcelReportGenerator:
         # Header
         ws["A1"] = "Quarterly Sales Report"
         ws["A1"].font = Font(bold= True, size=14)
-        for row in data.itertuples():
-            ws.append(row[1:])
+        # for row in data.itertuples():
+        #     ws.append(row[1:])
+        for row in dataframe_to_rows(data, index=False, header=True):
+            ws.append(row)
         chart = BarChart()
         chart.title = "Product performance report"
-        values = Reference(ws, min_col=2, max_col=3, min_row=1, max_row=3)
-        categories = Reference(ws, min_col=1, min_row=2, max_row=ws.max_row)
+        # chart.style = 4
+        values = Reference(ws, min_col=2, max_col=ws.max_column, min_row=1, max_row=ws.max_row)
+        # categories = Reference(ws, min_col=1, min_row=2, max_row=ws.max_row)
 
         chart.add_data(values, titles_from_data=True)
-        chart.set_categories(categories)
+        # chart.set_categories(categories)
         ws.add_chart(chart, "E2")
         self.stats["charts"] += 1
 if __name__ == "__main__":

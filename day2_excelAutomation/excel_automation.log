@@ -20,3 +20,8 @@
 2025-05-18 17:55:56,377 - INFO - Charts generated: 1
 2025-05-18 17:59:33,490 - INFO - Report generated: Q2_Sales_Report.xlsx
 2025-05-18 17:59:33,490 - INFO - Charts generated: 1
+2025-05-18 18:40:26,206 - INFO - Report generated: Q2_Sales_Report.xlsx
+2025-05-18 18:40:26,206 - INFO - Charts generated: 1
+2025-05-18 18:41:49,026 - ERROR - Report failed: [Errno 13] Permission denied: 'Q2_Sales_Report.xlsx'
+2025-05-18 18:42:05,477 - INFO - Report generated: Q2_Sales_Report.xlsx
+2025-05-18 18:42:05,477 - INFO - Charts generated: 1
