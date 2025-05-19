@@ -83,3 +83,13 @@
 2025-05-19 22:41:29,320 - INFO - Charts generated: 1
 2025-05-19 22:41:46,866 - ERROR - Report failed: [Errno 13] Permission denied: 'Q2_Sales_Report.xlsx'
 2025-05-19 22:41:46,867 - ERROR - Error: The file Q2_Sales_Report.xlsx is already open. Please close it and try again.
+2025-05-19 22:52:46,570 - INFO - Report generated: Q2_Sales_Report.xlsx
+2025-05-19 22:52:46,570 - INFO - Charts generated: 1
+2025-05-19 22:54:58,102 - ERROR - Report failed: Random.random() takes no arguments (2 given)
+2025-05-19 22:54:58,112 - ERROR - An expeted error occured Random.random() takes no arguments (2 given)
+2025-05-19 22:55:29,148 - ERROR - Report failed: [Errno 13] Permission denied: 'Q2_Sales_Report.xlsx'
+2025-05-19 22:55:29,148 - ERROR - Error: The file Q2_Sales_Report.xlsx is already open. Please close it and try again.
+2025-05-19 22:55:41,144 - INFO - Report generated: Q2_Sales_Report.xlsx
+2025-05-19 22:55:41,144 - INFO - Charts generated: 1
+2025-05-19 23:01:23,481 - INFO - Report generated: Q2_Sales_Report.xlsx
+2025-05-19 23:01:23,481 - INFO - Charts generated: 1
