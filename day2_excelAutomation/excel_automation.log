@@ -77,3 +77,9 @@
 2025-05-19 22:03:47,732 - INFO - Report generated: Q2_Sales_Report.xlsx
 2025-05-19 22:03:47,732 - INFO - Charts generated: 1
 2025-05-19 22:14:54,787 - ERROR - Report failed: Cannot convert ['beauty', 'mascara'] to Excel
+2025-05-19 22:30:07,167 - INFO - Report generated: Q2_Sales_Report.xlsx
+2025-05-19 22:30:07,168 - INFO - Charts generated: 1
+2025-05-19 22:41:29,320 - INFO - Report generated: Q2_Sales_Report.xlsx
+2025-05-19 22:41:29,320 - INFO - Charts generated: 1
+2025-05-19 22:41:46,866 - ERROR - Report failed: [Errno 13] Permission denied: 'Q2_Sales_Report.xlsx'
+2025-05-19 22:41:46,867 - ERROR - Error: The file Q2_Sales_Report.xlsx is already open. Please close it and try again.
