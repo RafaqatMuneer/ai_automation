@@ -19,7 +19,10 @@ class ExcelReportGenerator:
         logger.setLevel(logging.INFO) # logging level info and higher order
         handler = logging.FileHandler("excel_automation.log")
         handler.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")) # formatting log output timestamp - level - message
+        console_handler = logging.StreamHandler()
+        console_handler.setFormatter(logging.Formatter("%(levelname)s - %(message)s"))
         logger.addHandler(handler)
+        logger.addHandler(console_handler)
         return logger
     
     def fetch_data(self) -> pd.DataFrame:
@@ -82,9 +85,16 @@ class ExcelReportGenerator:
         ws.add_chart(chart, "E2")
         self.stats["charts"] += 1
 if __name__ == "__main__":
-    generator = ExcelReportGenerator()
-    # Generate investor-ready report
-    generator.create_report(Path("Q2_Sales_Report.xlsx"))   
-    # Log performance metrics
-    generator.logger.info(f"Charts generated: {generator.stats['charts']}")
+    try:
+        generator = ExcelReportGenerator()
+        # Generate investor-ready report
+        report_path = Path("Q2_Sales_Report.xlsx")
+        generator.create_report(report_path)   
+        # Log performance metrics
+        generator.logger.info(f"Charts generated: {generator.stats['charts']}")
+    except PermissionError:
+        generator.logger.error(f"Error: The file {report_path} is already open. Please close it and try again.")
+    except Exception as e:
+        generator.logger.error(f"An expeted error occured {e}")
+
 
