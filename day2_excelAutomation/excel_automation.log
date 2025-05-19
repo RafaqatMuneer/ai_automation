@@ -25,3 +25,54 @@
 2025-05-18 18:41:49,026 - ERROR - Report failed: [Errno 13] Permission denied: 'Q2_Sales_Report.xlsx'
 2025-05-18 18:42:05,477 - INFO - Report generated: Q2_Sales_Report.xlsx
 2025-05-18 18:42:05,477 - INFO - Charts generated: 1
+2025-05-18 22:03:10,927 - INFO - Report generated: Q2_Sales_Report.xlsx
+2025-05-18 22:03:10,927 - INFO - Charts generated: 1
+2025-05-18 22:17:40,662 - INFO - Report generated: Q2_Sales_Report.xlsx
+2025-05-18 22:17:40,662 - INFO - Charts generated: 1
+2025-05-18 22:18:20,332 - INFO - Report generated: Q2_Sales_Report.xlsx
+2025-05-18 22:18:20,332 - INFO - Charts generated: 1
+2025-05-18 22:20:49,307 - INFO - Report generated: Q2_Sales_Report.xlsx
+2025-05-18 22:20:49,307 - INFO - Charts generated: 1
+2025-05-18 22:23:05,685 - ERROR - Report failed: At least one sheet must be visible
+2025-05-18 22:23:50,250 - ERROR - Report failed: At least one sheet must be visible
+2025-05-18 22:24:48,186 - INFO - Report generated: Q2_Sales_Report.xlsx
+2025-05-18 22:24:48,186 - INFO - Charts generated: 1
+2025-05-18 22:26:36,427 - INFO - Report generated: Q2_Sales_Report.xlsx
+2025-05-18 22:26:36,427 - INFO - Charts generated: 1
+2025-05-19 18:36:00,640 - ERROR - Report failed: 'int' object is not callable
+2025-05-19 18:36:32,189 - ERROR - Report failed: At least one sheet must be visible
+2025-05-19 18:53:37,757 - ERROR - Report failed: Cannot convert {'rate': 3.9, 'count': 120} to Excel
+2025-05-19 19:02:46,588 - INFO - Report generated: Q2_Sales_Report.xlsx
+2025-05-19 19:02:46,588 - INFO - Charts generated: 1
+2025-05-19 20:38:19,189 - ERROR - Report failed: 'list' object has no attribute 'join'
+2025-05-19 20:42:11,140 - ERROR - Report failed: ExcelReportGenerator._flatten_dict_columns() missing 1 required positional argument: 'df'
+2025-05-19 20:43:33,394 - ERROR - Report failed: 'list' object has no attribute 'join'
+2025-05-19 20:44:15,422 - INFO - Report generated: Q2_Sales_Report.xlsx
+2025-05-19 20:44:15,422 - INFO - Charts generated: 1
+2025-05-19 20:45:06,302 - INFO - Report generated: Q2_Sales_Report.xlsx
+2025-05-19 20:45:06,302 - INFO - Charts generated: 1
+2025-05-19 20:45:52,062 - INFO - Report generated: Q2_Sales_Report.xlsx
+2025-05-19 20:45:52,062 - INFO - Charts generated: 1
+2025-05-19 20:46:05,967 - INFO - Report generated: Q2_Sales_Report.xlsx
+2025-05-19 20:46:05,967 - INFO - Charts generated: 1
+2025-05-19 20:46:32,614 - INFO - Report generated: Q2_Sales_Report.xlsx
+2025-05-19 20:51:11,633 - INFO - Report generated: Q2_Sales_Report.xlsx
+2025-05-19 20:56:45,573 - INFO - Report generated: Q2_Sales_Report.xlsx
+2025-05-19 20:56:45,838 - INFO - Charts generated: 1
+2025-05-19 21:29:40,085 - ERROR - Report failed: 'list' object has no attribute 'join'
+2025-05-19 21:32:32,482 - INFO - Report generated: Q2_Sales_Report.xlsx
+2025-05-19 21:32:32,732 - INFO - Charts generated: 1
+2025-05-19 21:37:57,554 - INFO - Report generated: Q2_Sales_Report.xlsx
+2025-05-19 21:37:57,554 - INFO - Charts generated: 1
+2025-05-19 21:38:16,115 - INFO - Report generated: Q2_Sales_Report.xlsx
+2025-05-19 21:38:16,115 - INFO - Charts generated: 1
+2025-05-19 21:53:51,425 - INFO - Report generated: Q2_Sales_Report.xlsx
+2025-05-19 21:53:51,425 - INFO - Charts generated: 1
+2025-05-19 21:57:09,286 - ERROR - Report failed: [Errno 13] Permission denied: 'Q2_Sales_Report.xlsx'
+2025-05-19 21:57:21,460 - ERROR - Report failed: Cannot convert [{'productId': 1, 'quantity': 4}, {'productId': 2, 'quantity': 1}, {'productId': 3, 'quantity': 6}] to Excel
+2025-05-19 21:59:46,358 - ERROR - Report failed: Cannot convert [{'productId': 1, 'quantity': 4}, {'productId': 2, 'quantity': 1}, {'productId': 3, 'quantity': 6}] to Excel
+2025-05-19 22:00:14,329 - ERROR - Report failed: Cannot convert [{'productId': 1, 'quantity': 4}, {'productId': 2, 'quantity': 1}, {'productId': 3, 'quantity': 6}] to Excel
+2025-05-19 22:02:10,905 - ERROR - Report failed: Cannot convert [{'productId': 1, 'quantity': 4}, {'productId': 2, 'quantity': 1}, {'productId': 3, 'quantity': 6}] to Excel
+2025-05-19 22:02:30,281 - ERROR - Report failed: At least one sheet must be visible
+2025-05-19 22:03:47,732 - INFO - Report generated: Q2_Sales_Report.xlsx
+2025-05-19 22:03:47,732 - INFO - Charts generated: 1
