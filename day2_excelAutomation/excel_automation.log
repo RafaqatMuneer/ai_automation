@@ -76,3 +76,4 @@
 2025-05-19 22:02:30,281 - ERROR - Report failed: At least one sheet must be visible
 2025-05-19 22:03:47,732 - INFO - Report generated: Q2_Sales_Report.xlsx
 2025-05-19 22:03:47,732 - INFO - Charts generated: 1
+2025-05-19 22:14:54,787 - ERROR - Report failed: Cannot convert ['beauty', 'mascara'] to Excel
