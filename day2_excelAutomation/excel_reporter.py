@@ -1,6 +1,6 @@
 import pandas as pd
 from openpyxl import Workbook
-from openpyxl.styles import Font
+from openpyxl.styles import Font, PatternFill
 from openpyxl.chart import BarChart, Reference
 import logging
 from typing import Dict, List
@@ -8,6 +8,7 @@ from openpyxl.utils.dataframe import dataframe_to_rows
 from pathlib import Path
 import requests
 import random
+import time
 
 class ExcelReportGenerator:
     def __init__(self):
@@ -33,11 +34,23 @@ class ExcelReportGenerator:
         #     "Q2 Sales": [51000, 63000, 92000]
         # })
         """Fetch data from fakestore API"""
-        url = "https://fakestoreapi.com/products"
-        response = requests.get(url)
-        if response.status_code != 200:
-            logging.error(f"API call failed with status {response.status_code}")
-        return pd.DataFrame(response.json())
+        # logic with manual retries
+        max_retries = 5
+        backoff_time = 2 # Start with 2 seconds
+        for attempt in range(max_retries):
+            try:
+                url = "https://fakestoreapi.com/products"
+                response = requests.get(url, timeout=5)
+                response.raise_for_status()
+                return pd.DataFrame(response.json())
+            except requests.exceptions.RequestException as e:
+                self.logger.warning(f"Attempt {attempt + 1} of API call failed: {str(e)}")
+                if attempt < max_retries -1 :
+                    time.sleep(backoff_time)
+                    backoff_time *= 2 # Exponential backoff
+                else:
+                    self.logger.error("Max retries reached. API call failed.")
+                    raise
     
     def _flatten_dict_columns(self) -> pd.DataFrame:
         df = self.fetch_data()
@@ -49,8 +62,10 @@ class ExcelReportGenerator:
                 dict_df.columns = [f"{col}_{subcol}" for subcol in dict_df.columns]  # Rename columns
                 df = df.drop(columns=[col]).join(dict_df)  # Drop the original column and join expanded columns
                 # Add random sales data column
-                df["sales_data"] = [random.randint(1000, 10000) for _ in range(len(df))]
-                df["Quarter"] = [random.randint(1,4) for _ in range(len(df))]
+                df["Q1_sales"] = [random.randint(1000, 10000) for _ in range(len(df))]
+                df["Q2_sales"] = [random.randint(1000, 10000) for _ in range(len(df))]
+                # Calculate Q2 vs Q1 growth and add as a new column
+                df["Q2 vs Q1 Growth"] = ((df["Q2_sales"] - df["Q1_sales"]) / df["Q1_sales"] * 100).round(1) 
         return df
 
     def create_report(self, output_path: Path) -> None:
@@ -76,10 +91,15 @@ class ExcelReportGenerator:
         ws["A1"].font = Font(bold= True, size=14)
         # for row in data.itertuples():
         #     ws.append(row[1:])
-        for row in dataframe_to_rows(data, index=False, header=True):
+        for i, row in enumerate(data.itertuples(index=False), start=1):
             ws.append(row)
+            # Apply fill color
+            fill_color = PatternFill(start_color="D9EAD3" if i % 2 == 0 else "FCE4D6", end_color="D9EAD3" if i % 2 == 0 else "FCE4D6", fill_type="solid")
+            for cell in ws[i]:
+                cell.fill = fill_color
         chart = BarChart()
         chart.title = "Product performance report"
+        chart.style = 13  # Choose a built-in chart style
         # chart.style = 4
         # values = Reference(ws, min_col=2, max_col=ws.max_column, min_row=1, max_row=ws.max_row)
         # # categories = Reference(ws, min_col=1, min_row=2, max_row=ws.max_row)
@@ -90,20 +110,21 @@ class ExcelReportGenerator:
         chart.x_axis.title = "Products"
         chart.y_axis.title = "Sales Data"
         
-        # Reference data for chart (B for Product, I for sales_data, J for quarter_no)
-        product_range = Reference(ws, min_col=2, min_row=2, max_row=len(data) + 1)  # Product names
-        sales_data_range = Reference(ws, min_col=9, min_row=2, max_row=len(data) + 1)  # sales_data
+        # Reference data for chart
+        product_range = Reference(ws, min_col=2, min_row=2, max_row=7)  # Product names
+        sales_data_range = Reference(ws, min_col=9, min_row=2, max_row=7)  # sales_data
+        # quarter_data_range = Reference(ws, min_col=10, min_row=2, max_row=len(data) + 2)  # quarter_no (Column J)
         chart.add_data(sales_data_range, titles_from_data=False)
         chart.set_categories(product_range)
         
         # Place the chart on the worksheet
-        ws.add_chart(chart, "L5")
+        ws.add_chart(chart, "N5")
         self.stats["charts"] += 1
 if __name__ == "__main__":
     try:
         generator = ExcelReportGenerator()
         # Generate investor-ready report
-        report_path = Path("Q2_Sales_Report.xlsx")
+        report_path = Path("Sales_Report.xlsx")
         generator.create_report(report_path)   
         # Log performance metrics
         generator.logger.info(f"Charts generated: {generator.stats['charts']}")
