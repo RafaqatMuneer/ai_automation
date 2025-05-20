@@ -93,3 +93,59 @@
 2025-05-19 22:55:41,144 - INFO - Charts generated: 1
 2025-05-19 23:01:23,481 - INFO - Report generated: Q2_Sales_Report.xlsx
 2025-05-19 23:01:23,481 - INFO - Charts generated: 1
+2025-05-20 06:57:36,940 - INFO - Report generated: Sales_Report.xlsx
+2025-05-20 06:57:36,956 - INFO - Charts generated: 1
+2025-05-20 06:59:13,677 - INFO - Report generated: Sales_Report.xlsx
+2025-05-20 06:59:13,678 - INFO - Charts generated: 1
+2025-05-20 07:07:03,609 - INFO - Report generated: Sales_Report.xlsx
+2025-05-20 07:07:03,609 - INFO - Charts generated: 1
+2025-05-20 07:11:53,208 - INFO - Report generated: Sales_Report.xlsx
+2025-05-20 07:11:53,208 - INFO - Charts generated: 1
+2025-05-20 07:16:17,419 - ERROR - Report failed: 'Q2 Sales'
+2025-05-20 07:16:17,420 - ERROR - An expeted error occured 'Q2 Sales'
+2025-05-20 07:17:02,776 - ERROR - Report failed: 'Q2 Sales'
+2025-05-20 07:17:02,777 - ERROR - An expeted error occured 'Q2 Sales'
+2025-05-20 07:19:55,095 - ERROR - Report failed: 'Q2_Sales'
+2025-05-20 07:19:55,096 - ERROR - An expeted error occured 'Q2_Sales'
+2025-05-20 07:20:15,202 - ERROR - Report failed: 'Q2_Sales'
+2025-05-20 07:20:15,202 - ERROR - An expeted error occured 'Q2_Sales'
+2025-05-20 07:20:35,175 - INFO - Report generated: Sales_Report.xlsx
+2025-05-20 07:20:35,176 - INFO - Charts generated: 1
+2025-05-20 07:21:05,004 - ERROR - Report failed: [Errno 13] Permission denied: 'Sales_Report.xlsx'
+2025-05-20 07:21:05,004 - ERROR - Error: The file Sales_Report.xlsx is already open. Please close it and try again.
+2025-05-20 07:21:48,372 - ERROR - Report failed: 'Q2_Sales'
+2025-05-20 07:21:48,372 - ERROR - An expeted error occured 'Q2_Sales'
+2025-05-20 07:22:17,666 - INFO - Report generated: Sales_Report.xlsx
+2025-05-20 07:22:17,667 - INFO - Charts generated: 1
+2025-05-20 07:22:49,429 - INFO - Report generated: Sales_Report.xlsx
+2025-05-20 07:22:49,429 - INFO - Charts generated: 1
+2025-05-20 07:25:11,087 - ERROR - Report failed: [Errno 13] Permission denied: 'Sales_Report.xlsx'
+2025-05-20 07:25:11,088 - ERROR - Error: The file Sales_Report.xlsx is already open. Please close it and try again.
+2025-05-20 07:25:27,452 - INFO - Report generated: Sales_Report.xlsx
+2025-05-20 07:25:27,453 - INFO - Charts generated: 1
+2025-05-20 07:29:03,807 - INFO - Report generated: Sales_Report.xlsx
+2025-05-20 07:29:03,808 - INFO - Charts generated: 1
+2025-05-20 07:29:44,079 - ERROR - Report failed: [Errno 13] Permission denied: 'Sales_Report.xlsx'
+2025-05-20 07:29:44,079 - ERROR - Error: The file Sales_Report.xlsx is already open. Please close it and try again.
+2025-05-20 07:30:05,995 - INFO - Report generated: Sales_Report.xlsx
+2025-05-20 07:30:05,996 - INFO - Charts generated: 1
+2025-05-20 07:39:53,589 - INFO - Report generated: Sales_Report.xlsx
+2025-05-20 07:39:53,590 - INFO - Charts generated: 1
+2025-05-20 07:44:46,398 - INFO - Report generated: Sales_Report.xlsx
+2025-05-20 07:44:46,398 - INFO - Charts generated: 1
+2025-05-20 07:45:19,826 - ERROR - Report failed: [Errno 13] Permission denied: 'Sales_Report.xlsx'
+2025-05-20 07:45:19,827 - ERROR - Error: The file Sales_Report.xlsx is already open. Please close it and try again.
+2025-05-20 07:45:33,664 - ERROR - Report failed: 0 is not a valid coordinate or range
+2025-05-20 07:45:33,664 - ERROR - An expeted error occured 0 is not a valid coordinate or range
+2025-05-20 07:45:54,189 - ERROR - Report failed: 0 is not a valid coordinate or range
+2025-05-20 07:45:54,190 - ERROR - An expeted error occured 0 is not a valid coordinate or range
+2025-05-20 07:46:02,645 - INFO - Report generated: Sales_Report.xlsx
+2025-05-20 07:46:02,645 - INFO - Charts generated: 1
+2025-05-20 08:05:28,812 - WARNING - Attempt 1 of API call failed: 404 Client Error: Not Found for url: https://fakestoreapi.com/product
+2025-05-20 08:05:31,334 - WARNING - Attempt 2 of API call failed: 404 Client Error: Not Found for url: https://fakestoreapi.com/product
+2025-05-20 08:05:35,599 - WARNING - Attempt 3 of API call failed: 404 Client Error: Not Found for url: https://fakestoreapi.com/product
+2025-05-20 08:05:43,850 - WARNING - Attempt 4 of API call failed: 404 Client Error: Not Found for url: https://fakestoreapi.com/product
+2025-05-20 08:06:00,158 - WARNING - Attempt 5 of API call failed: 404 Client Error: Not Found for url: https://fakestoreapi.com/product
+2025-05-20 08:06:00,159 - ERROR - Max retries reached. API call failed.
+2025-05-20 08:06:00,160 - ERROR - Report failed: 404 Client Error: Not Found for url: https://fakestoreapi.com/product
+2025-05-20 08:06:00,161 - ERROR - An expeted error occured 404 Client Error: Not Found for url: https://fakestoreapi.com/product
