@@ -9,13 +9,14 @@ from pathlib import Path
 import requests
 import random
 import time
+from email_sender import SendEmail
 
 class ExcelReportGenerator:
     def __init__(self):
-        self.logger = self._setup_logger()
+        self.logger = self.setup_logger()
         # self.logger.info(f"Starting orgnization of ")
         self.stats = {"sheets": 0, "charts": 0, "backups": 0}
-    def _setup_logger(self) -> logging.Logger:
+    def setup_logger(self) -> logging.Logger:
         "The Logging Configuration"
         logger = logging.getLogger(__name__)
         logger.setLevel(logging.INFO) # logging level info and higher order
@@ -128,6 +129,15 @@ if __name__ == "__main__":
         generator.create_report(report_path)   
         # Log performance metrics
         generator.logger.info(f"Charts generated: {generator.stats['charts']}")
+        # Sending Email
+        email_sender = SendEmail()
+        email_sender.send_email(
+            recipient_email= "faqi2023@gmail.com",
+            subject="Progress Report",
+            body="Please find attachment",
+            attachment_path="Sales_Report.xlsx",
+        )
+        generator.logger.info(f"Email Sent successfully")
     except PermissionError:
         generator.logger.error(f"Error: The file {report_path} is already open. Please close it and try again.")
     except Exception as e:
