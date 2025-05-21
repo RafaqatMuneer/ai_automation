@@ -5,7 +5,7 @@
 ✔️ Professional formatting  
 
 ## Optional Extras
-✅ [X] Email integration  
+✅ [] Email integration  
 ✅ [X] Cloud backup  
 ✅ [ ] Growth calculations  
 
