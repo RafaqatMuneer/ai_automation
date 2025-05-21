@@ -149,3 +149,14 @@
 2025-05-20 08:06:00,159 - ERROR - Max retries reached. API call failed.
 2025-05-20 08:06:00,160 - ERROR - Report failed: 404 Client Error: Not Found for url: https://fakestoreapi.com/product
 2025-05-20 08:06:00,161 - ERROR - An expeted error occured 404 Client Error: Not Found for url: https://fakestoreapi.com/product
+2025-05-21 07:05:54,856 - INFO - Report generated: Sales_Report.xlsx
+2025-05-21 07:05:54,856 - INFO - Charts generated: 1
+2025-05-21 07:14:23,412 - INFO - Report generated: Sales_Report.xlsx
+2025-05-21 07:14:23,412 - INFO - Charts generated: 1
+2025-05-21 07:14:26,380 - INFO - Email Sent successfully
+2025-05-21 07:14:46,944 - INFO - Report generated: Sales_Report.xlsx
+2025-05-21 07:14:46,944 - INFO - Charts generated: 1
+2025-05-21 07:14:46,944 - ERROR - An expeted error occured [Errno 2] No such file or directory: 'C:\\Users\\Malik/.yagmail'
+2025-05-21 07:15:36,919 - INFO - Report generated: Sales_Report.xlsx
+2025-05-21 07:15:36,919 - INFO - Charts generated: 1
+2025-05-21 07:15:39,566 - INFO - Email Sent successfully
