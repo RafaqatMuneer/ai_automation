@@ -5,6 +5,7 @@ import logging
 from typing import List, Dict
 import re
 import logger_util
+import pdfplumber
 
 class InvoiceProcessor:
     def __init__(self):
@@ -30,13 +31,31 @@ class InvoiceProcessor:
             self.logger.error(f"Batch processing failed ! {str(e)}")
             raise
 
-    def _extract_from_pdf(self) -> str:
-        pass
+    def _extract_from_pdf(self, pdf_file : Path) -> List[Dict]:
+        data = []
+        with pdfplumber.open(pdf_file) as pdf:
+            for page in pdf.pages:
+                tables = page.extract_tables()
+                if tables:
+                    for table in tables:
+                        cleaned = self._clean_table_data(table)
+                        data.extend(cleaned)
+                        # self.stats["tables_extracted"]
+                text = page.extract_text()
+                if text and not tables:
+                    parsed = self._parse_unstructured_text(text)
+                    data.extend(parsed)
+        return data
+    
     def _save_to_excel(self):
         pass
+    def _clean_table_data(self, table):
+        return table
+    def _parse_unstructured_text(self,text):
+        return [{"text" : text}]
 
 
     
 if __name__ == "__main__":
-    generator = InvoiceProcessor()
+    prcocessor = InvoiceProcessor()
 
