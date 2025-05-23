@@ -53,7 +53,6 @@ class InvoiceProcessor:
             df.to_excel(writer, index = False)
         self.logger.info(f"Saved invoice data: {output_path}")
     
-        pass
     def _clean_table_data(self, table : List[List[str]]) -> List[Dict]:
         "Clean and Normalize extracted data from pdf file"
         #Remove empty rows
@@ -83,11 +82,42 @@ class InvoiceProcessor:
         cleaned_table = [dict(zip(headers,row)) for row in table]
         return cleaned_table
     
-    def _parse_unstructured_text(self,text):
-        return [{"text" : text}]
+    def _parse_unstructured_text(self, text:str) -> List[Dict[str,str]]:
+        """
+        Parse unstructured text to extract structured information like email, phone, dates, etc.
+        Args:
+            text (str): The unstructured text to parse.
+        Returns:
+            List[Dict[str, str]]: A list of dictionaries with extracted data.
+
+        """
+
+        # Define regex patterns for various types of data
+        email_pattern = r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+        phone_pattern = r"\+?\d{1,3}[-.\s]?\(?\d{1,4}\)?[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+        date_pattern = r"\b(?:\d{1,2}[-/th|st|nd|rd\s])?(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)[\s-]?\d{1,2}[-,]?[\s-]?\d{2,4}\b"
+        # Extract matches
+        emails = re.findall(email_pattern, text)
+        phones = re.findall(phone_pattern, text)
+        dates = re.findall(date_pattern,text)
+
+        #create a structured list of find informations
+        parsed_data = []
+        if emails:
+            parsed_data.append({"type":"email", "value":emails})
+        if phones:
+            parsed_data.append({"types":"phones","value":phones})
+        if dates:
+            parsed_data.append({"types":"phones","value":dates})
+        
+        # Add unstructured text if needed
+        parsed_data.append({"type":"raw_text","value":text.strip()})
+
+        return parsed_data
 
 
     
 if __name__ == "__main__":
     prcocessor = InvoiceProcessor()
+
 
