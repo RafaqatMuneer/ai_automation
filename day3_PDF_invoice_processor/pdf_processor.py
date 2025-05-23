@@ -19,6 +19,11 @@ class InvoiceProcessor:
     def process_invoices(self, input_dir : Path, output_dir : Path) -> None:
         "Batch processing of pdf invoices"
         try:
+            # Ensure both input_dir and output_dir are Path objects
+            if isinstance(input_dir, str):
+                input_dir = Path(input_dir)
+            if isinstance(output_dir, str):
+                output_dir = Path(output_dir)
             output_dir.mkdir(exist_ok=True)
             #Input directory for all files
             for pdf_file in input_dir.glob("*.pdf"):
@@ -48,7 +53,7 @@ class InvoiceProcessor:
         return data
     
     def _save_to_excel(self, data : List[Dict], output_path : Path) -> None:
-        df = pd.date_range(data)
+        df = pd.DataFrame(data)
         with pd.ExcelWriter(output_path) as writer:
             df.to_excel(writer, index = False)
         self.logger.info(f"Saved invoice data: {output_path}")
@@ -119,5 +124,6 @@ class InvoiceProcessor:
     
 if __name__ == "__main__":
     prcocessor = InvoiceProcessor()
+    prcocessor.process_invoices(r"E:\pdf files",r"E:\excel files" )
 
 
