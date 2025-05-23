@@ -1,1 +1,4 @@
  
+2025-05-23 08:16:25,108 - ERROR - Batch processing failed ! 'str' object has no attribute 'mkdir'
+2025-05-23 08:27:11,089 - ERROR - Batch processing failed ! Of the four parameters: start, end, periods, and freq, exactly three must be specified
+2025-05-23 08:31:04,977 - INFO - Saved invoice data: E:\excel files\Home Work.xlsx
