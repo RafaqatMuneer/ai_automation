@@ -40,17 +40,49 @@ class InvoiceProcessor:
                     for table in tables:
                         cleaned = self._clean_table_data(table)
                         data.extend(cleaned)
-                        # self.stats["tables_extracted"]
+                        self.stats["tables_extracted"]
                 text = page.extract_text()
                 if text and not tables:
                     parsed = self._parse_unstructured_text(text)
                     data.extend(parsed)
         return data
     
-    def _save_to_excel(self):
+    def _save_to_excel(self, data : List[Dict], output_path : Path) -> None:
+        df = pd.date_range(data)
+        with pd.ExcelWriter(output_path) as writer:
+            df.to_excel(writer, index = False)
+        self.logger.info(f"Saved invoice data: {output_path}")
+    
         pass
-    def _clean_table_data(self, table):
-        return table
+    def _clean_table_data(self, table : List[List[str]]) -> List[Dict]:
+        "Clean and Normalize extracted data from pdf file"
+        #Remove empty rows
+        table = [row for row in table if any(cell.strip() for cell in row if cell)]
+        # Normalize headers
+        headers = [cell.strip() for cell in table[0]]
+        # ensure consistent row length
+        table = [row + [""] * (len(headers) - len(row)) for row in table[1:]]
+        #covert data types
+        for row in table:
+            for i, cell in enumerate(row):
+                cell = cell.strip()  # Clean leading/trailing whitespace
+                if cell == "": # Preserve empty cells
+                    continue
+                if re.match(r"^\d+$", cell):
+                    row[i] = int(cell) # convert to integer 
+                elif re.match(r"^\d+\.\d+$",cell):
+                    row[i] = float(cell) # convert to float
+                elif re.match(r"^\$\d+\.\d+$", cell): #currency symbol $
+                    row[i] = float(cell.replace("$", ""))
+        # Handle merged cells
+        for row in table:
+            for i, cell in enumerate(row):
+                if not cell and i > 0: # it is not first cell and cell value is zero
+                    row[i] = row[i - 1] # insert value of the previous cell
+        #combine headers and row
+        cleaned_table = [dict(zip(headers,row)) for row in table]
+        return cleaned_table
+    
     def _parse_unstructured_text(self,text):
         return [{"text" : text}]
 
