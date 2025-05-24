@@ -47,7 +47,7 @@ class InvoiceProcessor:
                         data.extend(cleaned)
                         self.stats["tables_extracted"]
                 text = page.extract_text()
-                if text and not tables:
+                if text:
                     parsed = self._parse_unstructured_text(text)
                     data.extend(parsed)
         return data
@@ -99,8 +99,11 @@ class InvoiceProcessor:
 
         # Define regex patterns for various types of data
         email_pattern = r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
-        phone_pattern = r"\+?\d{1,3}[-.\s]?\(?\d{1,4}\)?[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-        date_pattern = r"\b(?:\d{1,2}[-/th|st|nd|rd\s])?(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)[\s-]?\d{1,2}[-,]?[\s-]?\d{2,4}\b"
+        # phone_pattern = r"\+?\d{1,3}[-.\s]?\(?\d{1,4}\)?[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+        phone_pattern = r"\+?\d{1,3}[-.\s]?\(?\d{1,4}\)?[-.\s]?\d{1,3}[-.\s]?\d{3,4}(?!\.\d|\d-\d)"
+
+        # date_pattern = r"\b(?:\d{1,2}[-/th|st|nd|rd\s])?(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)[\s-]?\d{1,2}[-,]?[\s-]?\d{2,4}\b"
+        date_pattern = r"\d{1,2}/\d{1,2}/\d{4}|\d{4}-\d{2}-\d{2}|\d{2}-\w{3}-\d{4}"
         # Extract matches
         emails = re.findall(email_pattern, text)
         phones = re.findall(phone_pattern, text)
@@ -113,13 +116,12 @@ class InvoiceProcessor:
         if phones:
             parsed_data.append({"type":"phones","value":phones})
         if dates:
-            parsed_data.append({"type":"phones","value":dates})
+            parsed_data.append({"type":"dates","value":dates})
         
         # Add unstructured text if needed
-        parsed_data.append({"type":"raw_text","value":text.strip()})
+        # parsed_data.append({"type":"raw_text","value":text.strip()})
 
         return parsed_data
-
 
     
 if __name__ == "__main__":
