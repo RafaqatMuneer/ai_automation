@@ -111,9 +111,9 @@ class InvoiceProcessor:
         if emails:
             parsed_data.append({"type":"email", "value":emails})
         if phones:
-            parsed_data.append({"types":"phones","value":phones})
+            parsed_data.append({"type":"phones","value":phones})
         if dates:
-            parsed_data.append({"types":"phones","value":dates})
+            parsed_data.append({"type":"phones","value":dates})
         
         # Add unstructured text if needed
         parsed_data.append({"type":"raw_text","value":text.strip()})
