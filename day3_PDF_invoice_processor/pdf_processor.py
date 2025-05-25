@@ -1,11 +1,11 @@
 import re
 import pandas as pd
 from pathlib import Path
-import logging
 from typing import List, Dict
 import re
 import logger_util
 import pdfplumber
+from datetime import datetime
 
 class InvoiceProcessor:
     def __init__(self):
@@ -41,12 +41,14 @@ class InvoiceProcessor:
         with pdfplumber.open(pdf_file) as pdf:
             for page in pdf.pages:
                 tables = page.extract_tables()
+                # tables = page.crop(page_bbox).extract_tables()
                 if tables:
                     for table in tables:
                         cleaned = self._clean_table_data(table)
                         data.extend(cleaned)
                         self.stats["tables_extracted"]
                 text = page.extract_text()
+                # text = page.crop(page_bbox).extract_text()
                 if text:
                     parsed = self._parse_unstructured_text(text)
                     data.extend(parsed)
@@ -78,6 +80,8 @@ class InvoiceProcessor:
                     row[i] = float(cell) # convert to float
                 elif re.match(r"^\$\d+\.\d+$", cell): #currency symbol $
                     row[i] = float(cell.replace("$", ""))
+                elif re.match(r"\d{1,2}/\d{1,2}/\d{4}|\d{4}-\d{2}-\d{2}", cell):
+                    row[i] = datetime.strptime(cell, "%Y-%m-%d").date()  # Adjust format as needed
         # Handle merged cells
         for row in table:
             for i, cell in enumerate(row):
@@ -99,11 +103,9 @@ class InvoiceProcessor:
 
         # Define regex patterns for various types of data
         email_pattern = r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
-        # phone_pattern = r"\+?\d{1,3}[-.\s]?\(?\d{1,4}\)?[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
         phone_pattern = r"\+?\d{1,3}[-.\s]?\(?\d{1,4}\)?[-.\s]?\d{1,3}[-.\s]?\d{3,4}(?!\.\d|\d-\d)"
-
-        # date_pattern = r"\b(?:\d{1,2}[-/th|st|nd|rd\s])?(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)[\s-]?\d{1,2}[-,]?[\s-]?\d{2,4}\b"
-        date_pattern = r"\d{1,2}/\d{1,2}/\d{4}|\d{4}-\d{2}-\d{2}|\d{2}-\w{3}-\d{4}"
+        # date_pattern = r"\d{1,2}/\d{1,2}/\d{4}|\d{4}-\d{2}-\d{2}|\d{2}-\w{3}-\d{4}"
+        date_pattern = r"\d{1,2}/\d{1,2}/\d{4}|\d{4}-\d{2}-\d{2}"
         # Extract matches
         emails = re.findall(email_pattern, text)
         phones = re.findall(phone_pattern, text)
@@ -122,7 +124,6 @@ class InvoiceProcessor:
         # parsed_data.append({"type":"raw_text","value":text.strip()})
 
         return parsed_data
-
     
 if __name__ == "__main__":
     prcocessor = InvoiceProcessor()
