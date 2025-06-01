@@ -6,11 +6,13 @@ import re
 import logger_util
 import pdfplumber
 from datetime import datetime
+from database import InvoiceDatabase
 
 class InvoiceProcessor:
     def __init__(self):
         self.logger = logger_util.LoggerUtility().logger
         # self.logger.info("InvoiceProcessor initialized.")
+        self.db = InvoiceDatabase()
         self.stats : Dict[str, int] = {
             "invoices_processed" : 0,
             "tables_extracted" : 0,
@@ -29,9 +31,19 @@ class InvoiceProcessor:
             for pdf_file in input_dir.glob("*.pdf"):
                 # Extract data from pdf files
                 data = self._extract_from_pdf(pdf_file)
+                # for row in data:
+                #     print(data)
                 # saving the extracted data to Excel files
                 self._save_to_excel(data, output_dir / f"{pdf_file.stem}.xlsx") # file name same with .xlsx extension
                 self.stats["invoices_processed"] += 1
+                # print(data)
+                self.db.insert_invoices_batch(data)
+
+                # for row in data:
+                #     # self.db.insert_invoices_batch(row)
+                #     print(row)
+                
+                # self._save_to_sqlite(data)
         except Exception as e:
             self.logger.error(f"Batch processing failed ! {str(e)}")
             raise
@@ -47,11 +59,10 @@ class InvoiceProcessor:
                         cleaned = self._clean_table_data(table)
                         data.extend(cleaned)
                         self.stats["tables_extracted"]
-                text = page.extract_text()
-                # text = page.crop(page_bbox).extract_text()
-                if text:
-                    parsed = self._parse_unstructured_text(text)
-                    data.extend(parsed)
+                # text = page.extract_text()
+                # if text:
+                #     parsed = self._parse_unstructured_text(text)
+                #     data.extend(parsed)
         return data
     
     def _save_to_excel(self, data : List[Dict], output_path : Path) -> None:
@@ -59,9 +70,14 @@ class InvoiceProcessor:
         with pd.ExcelWriter(output_path) as writer:
             df.to_excel(writer, index = False)
         self.logger.info(f"Saved invoice data: {output_path}")
+    def _save_to_sqlite(self, data : List[Dict]):
+        import sqlite3
+        conn = sqlite3.connect("invoices.db")
+        pd.DataFrame(data).to_sql("invoices",conn)
     
     def _clean_table_data(self, table : List[List[str]]) -> List[Dict]:
         "Clean and Normalize extracted data from pdf file"
+        detected_vendor = []
         #Remove empty rows
         table = [row for row in table if any(cell.strip() for cell in row if cell)]
         # Normalize headers
@@ -78,10 +94,12 @@ class InvoiceProcessor:
                     row[i] = int(cell) # convert to integer 
                 elif re.match(r"^\d+\.\d+$",cell):
                     row[i] = float(cell) # convert to float
-                elif re.match(r"^\$\d+\.\d+$", cell): #currency symbol $
-                    row[i] = float(cell.replace("$", ""))
+                elif re.match(r"^[\$£€]\d+\.\d+$", cell): #currency symbol $
+                    row[i] = float(re.sub(r"^[\$£€]", "", cell))
                 elif re.match(r"\d{1,2}/\d{1,2}/\d{4}|\d{4}-\d{2}-\d{2}", cell):
                     row[i] = datetime.strptime(cell, "%Y-%m-%d").date()  # Adjust format as needed
+            vendor = self._detect_vendor(cell)
+            detected_vendor.append(vendor)
         # Handle merged cells
         for row in table:
             for i, cell in enumerate(row):
@@ -90,6 +108,17 @@ class InvoiceProcessor:
         #combine headers and row
         cleaned_table = [dict(zip(headers,row)) for row in table]
         return cleaned_table
+    def _detect_vendor(self,text:str) -> str:
+        patterns = {
+        "Amazon": r"amazon\.com/invoice",
+        "Stripe": r"stripe\s+invoice",
+        "PayPal": r"paypal\.com/invoice"
+        }
+        for vendor, pattern in patterns.items():
+            if re.search(pattern,text,re.IGNORECASE):
+                return vendor
+        return "unknown"
+
     
     def _parse_unstructured_text(self, text:str) -> List[Dict[str,str]]:
         """
@@ -128,5 +157,10 @@ class InvoiceProcessor:
 if __name__ == "__main__":
     prcocessor = InvoiceProcessor()
     prcocessor.process_invoices(r"E:\pdf files",r"E:\excel files" )
+    # data = [
+    # {"invoice_id": 1, "vendor": "Amazon", "amount": 45.00, "date": "2023-05-25"},
+    # {"invoice_id": 2, "vendor": "Stripe", "amount": 30.00, "date": "2023-05-24"}
+    # ]
+    # prcocessor._save_to_sqlite(data)
 
 
