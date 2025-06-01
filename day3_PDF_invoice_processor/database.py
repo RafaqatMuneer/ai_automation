@@ -2,7 +2,7 @@ import sqlite3
 from pathlib import Path
 from typing import List, Dict
 import logging
-
+import pandas as pd
 class InvoiceDatabase:
     def __init__(self, db_path: str = "invoices.db"):
         self.db_path = Path(db_path)
@@ -83,6 +83,7 @@ class InvoiceDatabase:
                     )
                     for invoice in invoices
                 ])
+                
             return True
         except sqlite3.Error as e:
             self.logger.error(f"Failed to insert batch invoices: {e}")
@@ -98,6 +99,12 @@ class InvoiceDatabase:
                 ORDER BY date DESC
             """, (f"%{query}%", f"%{query}%", f"%{query}%"))
             return [dict(row) for row in cursor]
+    def export_to_excel(self, query: str = "SELECT * FROM invoices"):
+        """Day 2 integration point"""
+        with sqlite3.connect(self.db_path) as conn:
+            df = pd.read_sql(query, conn)
+            df.to_excel("invoices.xlsx", engine="openpyxl")
+    
 
 # Sample data for batch processing
 sample_invoices = [
@@ -140,6 +147,7 @@ sample_invoices = [{'invoice_id': 1, 'customer_name': 'Nicholas Murphy', 'phone'
 # Initialize database and insert batch
 db = InvoiceDatabase()
 db.insert_invoices_batch(sample_invoices)
+db.export_to_excel()
 
 # # Search invoices
 # search_results = db.search_invoices("Amazon")
