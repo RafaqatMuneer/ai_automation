@@ -38,6 +38,7 @@ class InvoiceProcessor:
                 self.stats["invoices_processed"] += 1
                 # print(data)
                 self.db.insert_invoices_batch(data)
+                self.db.export_to_excel()
 
                 # for row in data:
                 #     # self.db.insert_invoices_batch(row)
