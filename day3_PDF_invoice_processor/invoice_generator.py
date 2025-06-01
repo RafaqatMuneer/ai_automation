@@ -28,42 +28,41 @@ def generate_invoice(invoice_id, output_dir):
     email = fake.email()
     date = (datetime.now() - timedelta(days=random.randint(0, 365))).strftime('%Y-%m-%d')
 
-    # Invoice Header
-    pdf.cell(0, 10, f'Invoice ID: {invoice_id}', ln=True)
-    pdf.cell(0, 10, f'Customer Name: {customer_name}', ln=True)
-    pdf.cell(0, 10, f'Phone: {phone_number}', ln=True)
-    pdf.cell(0, 10, f'Email: {email}', ln=True)
-    pdf.cell(0, 10, f'Date: {date}', ln=True)
-
-    # Add a line break
-    pdf.ln(10)
-
-    # Invoice Table
-    pdf.cell(40, 10, 'Item', 1)
-    pdf.cell(40, 10, 'Quantity', 1)
-    pdf.cell(40, 10, 'Price', 1)
-    pdf.cell(40, 10, 'Total', 1)
+    # Table Header
+    pdf.cell(30, 10, 'invoice_id', 1)
+    pdf.cell(40, 10, 'customer_name', 1)
+    pdf.cell(30, 10, 'phone', 1)
+    pdf.cell(40, 10, 'email', 1)
+    pdf.cell(30, 10, 'date', 1)
+    pdf.cell(30, 10, 'vendor', 1)
+    pdf.cell(30, 10, 'item', 1)
+    pdf.cell(20, 10, 'quantity', 1)
+    pdf.cell(30, 10, 'price', 1)
+    pdf.cell(30, 10, 'total', 1)
     pdf.ln()
 
-    # Sample data for items
+    # Sample data for items with vendors
+    vendors = ['Amazon', 'Stripe', 'PayPal', 'eBay', 'Walmart']
     items = [
-        ('Widget A', random.randint(1, 5), round(random.uniform(10, 50), 2)),
-        ('Widget B', random.randint(1, 5), round(random.uniform(20, 80), 2)),
-        ('Widget C', random.randint(1, 5), round(random.uniform(5, 30), 2)),
+        ('Widget A', random.choice(vendors), random.randint(1, 5), round(random.uniform(10, 50), 2)),
+        ('Widget B', random.choice(vendors), random.randint(1, 5), round(random.uniform(20, 80), 2)),
+        ('Widget C', random.choice(vendors), random.randint(1, 5), round(random.uniform(5, 30), 2)),
     ]
 
-    for item, qty, price in items:
+    # Add rows to the table
+    for item, vendor, qty, price in items:
         total = qty * price
-        pdf.cell(40, 10, item, 1)
-        pdf.cell(40, 10, str(qty), 1)
-        pdf.cell(40, 10, f"${price:.2f}", 1)
-        pdf.cell(40, 10, f"${total:.2f}", 1)
+        pdf.cell(30, 10, str(invoice_id), 1)
+        pdf.cell(40, 10, customer_name, 1)
+        pdf.cell(30, 10, phone_number, 1)
+        pdf.cell(40, 10, email, 1)
+        pdf.cell(30, 10, date, 1)
+        pdf.cell(30, 10, vendor, 1)
+        pdf.cell(30, 10, item, 1)
+        pdf.cell(20, 10, str(qty), 1)
+        pdf.cell(30, 10, f"${price:.2f}", 1)
+        pdf.cell(30, 10, f"${total:.2f}", 1)
         pdf.ln()
-
-    # Total Amount
-    pdf.ln(10)
-    total_amount = sum(qty * price for _, qty, price in items)
-    pdf.cell(0, 10, f'Total Amount: ${total_amount:.2f}', ln=True)
 
     # Save the PDF
     output_path = os.path.join(output_dir, f"invoice_{invoice_id}.pdf")
@@ -74,6 +73,6 @@ def generate_invoice(invoice_id, output_dir):
 output_dir = r"E:\pdf files"
 os.makedirs(output_dir, exist_ok=True)
 
-# Generate 100 sample invoices
-for i in range(1, 101):
+# Generate 10 sample invoices
+for i in range(1, 11):
     generate_invoice(i, output_dir)
